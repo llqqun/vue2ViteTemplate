@@ -1,19 +1,34 @@
 <template>
   <main ref="el">
-    1
-    <div class="test">1235458110111111111111</div>
+    <p :data-id="store.userId">{{ store.userId }}</p>
+    <div @click="Test" class="test">测试</div>
+    <button @click="$router.push('/about')">about</button>
   </main>
 </template>
 
 <script>
+import { globalStore } from '@/stores/global'
 export default {
   data() {
-    return {};
+    return {
+      store: globalStore()
+    }
+  },
+  created() {
+    console.log(this.$store)
   },
   mounted() {
-    console.log(this.$router);
+    console.log('mounted')
+  },
+  activated() {
+    console.log('activated')
+  },
+  methods: {
+    Test() {
+      this.store.setUser({ name: 'lance', id: 123 })
+    }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .test {

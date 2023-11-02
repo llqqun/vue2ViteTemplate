@@ -19,6 +19,11 @@ const router = new VueRouter({
           component: () => import('@/views/HomeView.vue'),
           meta: {},
         },
+        {
+          path: 'about',
+          component: () => import('@/views/aboutView.vue'),
+          meta: {},
+        },
       ],
     },
   ],

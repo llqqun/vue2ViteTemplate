@@ -2,7 +2,9 @@
   <section class='layout flex-c'>
     <header class="top">top</header>
     <main class="middle">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </main>
     <footer class="bottom">bottom</footer>
   </section>

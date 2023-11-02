@@ -1,17 +1,20 @@
-import Vue from 'vue';
-import { createPinia, PiniaVuePlugin } from 'pinia';
+import Vue from 'vue'
+import { createPinia, PiniaVuePlugin } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import store from '@/stores/index'
+import App from './App.vue'
+import router from './router'
 
-import App from './App.vue';
-import router from './router';
+import '@/styles/index.less'
 
-import '@/styles/index.less';
-
-Vue.use(PiniaVuePlugin);
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+Vue.use(PiniaVuePlugin)
 
 new Vue({
   router,
-  pinia: createPinia(),
-  render: (h) => h(App),
-}).$mount('#app');
+  pinia,
+  render: (h) => h(App)
+}).$mount('#app')
 
-console.log(import.meta.env.VITE_SITE_HOST);
+Vue.prototype.$store = store()
