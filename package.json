@@ -14,6 +14,7 @@
     "pinia-plugin-persistedstate": "^3.2.0",
     "vue": "^2.7.14",
     "vue-router": "^3.5.4",
+    "element-ui": "^2.15.14",
     "zipson": "^0.2.12"
   },
   "devDependencies": {
@@ -33,6 +34,8 @@
     "terser": "^5.14.2",
     "vite": "^3.0.2",
     "vitest": "^0.18.1",
-    "vue-template-compiler": "^2.7.7"
+    "rollup-plugin-visualizer": "^5.9.2",
+    "vue-template-compiler": "^2.7.7",
+    "unplugin-vue-components": "^0.25.2"
   }
 }

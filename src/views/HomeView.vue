@@ -3,6 +3,8 @@
     <p :data-id="store.userId">{{ store.userId }}</p>
     <div @click="Test" class="test">测试</div>
     <button @click="$router.push('/about')">about</button>
+    <el-button>默认按钮</el-button>
+    <el-button type="primary">主要按钮</el-button>
   </main>
 </template>
 

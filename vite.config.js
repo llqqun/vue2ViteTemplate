@@ -4,7 +4,14 @@ import { defineConfig, loadEnv } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import vue2 from '@vitejs/plugin-vue2';
 import vue2Jsx from '@vitejs/plugin-vue2-jsx';
+import Components from 'unplugin-vue-components/vite'
+import { ElementUiResolver } from 'unplugin-vue-components/resolvers'
+import { visualizer } from 'rollup-plugin-visualizer';
 
+function kebabCase(key) {
+  const result = key.replace(/([A-Z])/g, ' $1').trim()
+  return result.split(' ').join('-').toLowerCase()
+}
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // eslint-disable-next-line no-undef
@@ -42,6 +49,21 @@ export default defineConfig(({ mode }) => {
         targets: ['ie >= 11'],
         additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
       }),
+      // 自动组件注册
+      Components({
+        dirs: ['src/components'], // 要搜索组件的目录的相对路径
+        resolvers: [(componentName) => {
+          // elementUI 组件自动注册功能
+          // where `componentName` is always CapitalCase
+          if (componentName.startsWith('El'))
+          {
+            return { name: componentName.slice(2), from: 'element-ui', sideEffects: [
+              `element-ui/lib/theme-chalk/${componentName.slice(2)}.css`,
+            ] }
+          }
+        }],
+      }),
+      visualizer()
     ],
     resolve: {
       alias: {
