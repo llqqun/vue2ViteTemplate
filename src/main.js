@@ -4,13 +4,17 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import store from '@/stores/index'
 import App from './App.vue'
 import router from './router'
-import { MessageBox } from 'element-ui'
+import apis from '@/apis'
+import { Message } from 'element-ui'
+// svg 图标
+import 'virtual:svg-icons-register'
+import 'element-ui/lib/theme-chalk/message.css'
 import '@/styles/index.less'
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 Vue.use(PiniaVuePlugin)
-
+Vue.use(apis)
 new Vue({
   router,
   pinia,
@@ -18,17 +22,8 @@ new Vue({
 }).$mount('#app')
 
 Vue.prototype.$store = store()
+Vue.prototype.$message = Message
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login') {
-    MessageBox.confirm('请先完成实名认证后，再申请调解。', '实名认证提醒', {
-      confirmButtonText: '立即认证',
-      cancelButtonText: '取消',
-      type: 'warning'
-    }).then(() => {
-      next({ path: '/peopleCenter?tab=1' })
-    })
-    return false
-  }
   next()
 })

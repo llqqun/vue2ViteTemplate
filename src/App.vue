@@ -7,5 +7,3 @@
   </div>
 </template>
 
-<style lang='less'>
-</style>

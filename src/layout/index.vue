@@ -2,8 +2,8 @@
   <section class='layout flex-c'>
     <header class="top">top</header>
     <main class="middle">
-      <keep-alive>
-        <router-view></router-view>
+      <keep-alive :include="keepAliveInclude">
+        <router-view />
       </keep-alive>
     </main>
     <footer class="bottom">bottom</footer>
@@ -11,10 +11,14 @@
 </template>
 
 <script>
+import { globalStore } from '@/stores/global';
 export default {
   name: 'Layout',
   data() {
-    return {}
+    const storeGlobal = globalStore()
+    return {
+      keepAliveInclude: storeGlobal.keepAlive
+    }
   }
 };
 </script>

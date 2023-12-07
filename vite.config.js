@@ -5,7 +5,9 @@ import legacy from '@vitejs/plugin-legacy';
 import vue2 from '@vitejs/plugin-vue2';
 import vue2Jsx from '@vitejs/plugin-vue2-jsx';
 import Components from 'unplugin-vue-components/vite'
-import { visualizer } from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -58,6 +60,12 @@ export default defineConfig(({ mode }) => {
           }
         }],
       }),
+      createSvgIconsPlugin({
+        iconDirs: [resolve(process.cwd(), 'src/assets/svg')],
+        symbolId: 'icon-[dir]-[name]',
+        inject: 'body-first'
+      }),
+      // 打包分析工具
       visualizer()
     ],
     resolve: {

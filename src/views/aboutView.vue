@@ -1,13 +1,23 @@
 <template>
   <div>
-    <p>about</p>
+    <p>{{ text }}</p>
     <button @click='$router.back()'>返回</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'aboutView'
+  name: 'aboutView',
+  data() {
+    return {
+      text: 'hello'
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.text = 'world'
+    }, 1000)
+  }
 }
 </script>
 
